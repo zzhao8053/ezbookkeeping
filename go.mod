@@ -1,6 +1,6 @@
 module github.com/zzhao8053/ezbookkeeping
 
-go 1.24
+go 1.25
 
 require (
 	github.com/boombuler/barcode v1.1.0
@@ -15,7 +15,7 @@ require (
 	github.com/invopop/jsonschema v0.13.0
 	github.com/lib/pq v1.10.9
 	github.com/mattn/go-sqlite3 v1.14.32
-	github.com/zzhao8053/ezbookkeeping v1.1.1
+	github.com/mayswind/ezbookkeeping v1.1.1
 	github.com/minio/minio-go/v7 v7.0.95
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pquerna/otp v1.5.0
