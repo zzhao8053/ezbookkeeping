@@ -8,7 +8,7 @@ ENV RELEASE_BUILD=$RELEASE_BUILD
 ENV BUILD_PIPELINE=$BUILD_PIPELINE
 ENV CHECK_3RD_API=$CHECK_3RD_API
 ENV SKIP_TESTS=$SKIP_TESTS
-WORKDIR /go/src/github.com/mayswind/ezbookkeeping
+WORKDIR /go/src/github.com/zzhao8053/ezbookkeeping
 COPY . .
 RUN docker/backend-build-pre-setup.sh
 RUN apk add git gcc g++ libc-dev
@@ -20,7 +20,7 @@ ARG RELEASE_BUILD
 ARG BUILD_PIPELINE
 ENV RELEASE_BUILD=$RELEASE_BUILD
 ENV BUILD_PIPELINE=$BUILD_PIPELINE
-WORKDIR /go/src/github.com/mayswind/ezbookkeeping
+WORKDIR /go/src/github.com/zzhao8053/ezbookkeeping
 COPY . .
 RUN docker/frontend-build-pre-setup.sh
 RUN apk add git
@@ -28,7 +28,7 @@ RUN ./build.sh frontend
 
 # Package docker image
 FROM alpine:3.22.1
-LABEL maintainer="MaysWind <i@mayswind.net>"
+LABEL maintainer="zzhao8053 <i@zzhao8053.net>"
 RUN addgroup -S -g 1000 ezbookkeeping && adduser -S -G ezbookkeeping -u 1000 ezbookkeeping
 RUN apk --no-cache add tzdata
 COPY docker/docker-entrypoint.sh /docker-entrypoint.sh
@@ -38,8 +38,8 @@ RUN mkdir -p /ezbookkeeping && chown 1000:1000 /ezbookkeeping \
   && mkdir -p /ezbookkeeping/log && chown 1000:1000 /ezbookkeeping/log \
   && mkdir -p /ezbookkeeping/storage && chown 1000:1000 /ezbookkeeping/storage
 WORKDIR /ezbookkeeping
-COPY --from=be-builder --chown=1000:1000 /go/src/github.com/mayswind/ezbookkeeping/ezbookkeeping /ezbookkeeping/ezbookkeeping
-COPY --from=fe-builder --chown=1000:1000 /go/src/github.com/mayswind/ezbookkeeping/dist /ezbookkeeping/public
+COPY --from=be-builder --chown=1000:1000 /go/src/github.com/zzhao8053/ezbookkeeping/ezbookkeeping /ezbookkeeping/ezbookkeeping
+COPY --from=fe-builder --chown=1000:1000 /go/src/github.com/zzhao8053/ezbookkeeping/dist /ezbookkeeping/public
 COPY --chown=1000:1000 conf /ezbookkeeping/conf
 COPY --chown=1000:1000 templates /ezbookkeeping/templates
 COPY --chown=1000:1000 LICENSE /ezbookkeeping/LICENSE
